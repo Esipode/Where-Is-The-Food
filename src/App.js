@@ -21,6 +21,15 @@ function App() {
 			setLoc(true);
 		})
 	}
+	const searchUpdate = (e) => {
+		//Regex for illegal characters
+			let srcVal = e.target.value;
+			const regExp = /[^\w\s-]/g;
+			if (srcVal.match(regExp)) {
+				srcVal = srcVal.replace(regExp, '');
+			}
+			inputAddr(srcVal);
+	}
 	useEffect(() => {
 		navigator.geolocation.getCurrentPosition((position) => {
 			setLat(position.coords.latitude);
@@ -31,11 +40,18 @@ function App() {
 	const [lat, setLat] = useState(0);
 	const [lng, setLng] = useState(0);
 	const [loc, setLoc] = useState(false);
+	const [addr, inputAddr] = useState('');
 	return (
 		<div className="App">
 			<div className="searchContainer">
-				<button className="findBtn" ><span role="img" aria-label="location">&#x1F4CD;</span> Find me</button>
-				<input className="searchBar" placeholder="Enter your location"></input>
+				<button className="findBtn" ><span role="img" aria-label="location">&#x1F4CD;</span>{addr === '' ? 'Or Find It' : 'Find Me'}</button>
+				<input 
+					className="searchBar" 
+					placeholder="Enter your location"
+					type="text"
+					value={addr}
+					onChange={searchUpdate}
+				/>
 				<button className={`witfBtn ${!loc || (lat === 0 && lng === 0) ? 'hideBtn' : ''}`} onClick={() => getVenues(lat, lng)} ></button>
 			</div>
 			<Container list={list} />
