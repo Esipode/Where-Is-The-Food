@@ -8,7 +8,6 @@
 }
 
 body {
-	background: #282828;
 	font-family: 'Bebas Neue', Arial, Helvetica, sans-serif;
 }
 
@@ -38,8 +37,45 @@ body {
 	}
 }
 
-.findMeBtn {
+.searchContainer {
+	display: flex;
+    place-items: center;
 	position: fixed;
+	height: 160px;
+	width: 500px;
+	top: calc(50% - 80px);
+	left: calc(50% - 250px);
+}
+
+.searchBar {
+	outline: none;
+	width: 425px;
+	height: 25px;
+	font-size: 28px;
+	opacity: 1;
+	border-bottom: 2px solid rgba(0,0,0,0.5);
+	background: transparent;
+	transition: all 0.2s linear;
+}
+
+.searchBar:hover::placeholder, .searchBar:focus::placeholder {
+	opacity: 0.3;
+	transition: all 0.2s linear;
+}
+
+.findBtn {
+	position: absolute;
+	cursor: pointer;
+	outline: none;
+	color: #cc3333;
+	background: transparent;
+	margin-top: 32px;
+	border: 2px solid #cc3333;
+	border-radius: 8px;
+	padding: 0 5px 0 3px;
+}
+
+.witfBtn {
 	top: calc(50% - 80px);
 	left: calc(50% - 37px);
 	cursor: pointer;
@@ -56,6 +92,10 @@ body {
 	opacity: 1;
 	transition: opacity 1s ease-in-out;
 	animation: grow 2s infinite;
+}
+
+.witfBtn:hover {
+	opacity: 0.8;
 }
 
 .hideBtn {
