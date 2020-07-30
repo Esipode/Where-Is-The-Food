@@ -55,7 +55,6 @@ body {
 	opacity: 1;
 	border-bottom: 2px solid rgba(0,0,0,0.5);
 	background: transparent;
-	transition: all 0.2s linear;
 }
 
 .searchBar:hover::placeholder, .searchBar:focus::placeholder {
@@ -69,10 +68,17 @@ body {
 	outline: none;
 	color: #cc3333;
 	background: transparent;
-	margin-top: 32px;
+	margin-top: 36px;
 	border: 2px solid #cc3333;
 	border-radius: 8px;
 	padding: 0 5px 0 3px;
+	font-size: 20px;
+	transition: all 0.2s linear;
+}
+
+.findBtn:hover {
+	background: #cc3333;
+	color: white;
 }
 
 .witfBtn {
