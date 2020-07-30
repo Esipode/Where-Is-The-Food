@@ -18,11 +18,11 @@ function Overlay({list, lat, lng, loc}) {
 	})
 	return (
 		<div className={`overlay ${loc ? 'show' : ''}`} >
-			<Map className="map" center={curPosition} zoom={14} minZoom={12} maxZoom={16} >
+			<Map className="map" center={curPosition} zoom={14} minZoom={13} maxZoom={15} >
 				<TileLayer
 				attribution='' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 				/>
-				<Marker style={{filter: 'hue-rotate(250deg)'}} position={curPosition} icon={homeIcon}>
+				<Marker style={{filter: 'hue-rotate(250deg)'}} position={curPosition} icon={homeIcon} key='home'>
 				<Popup>
 					Your Location <br /> {lat.toFixed(3)} <br /> {lng.toFixed(3)}
 				</Popup>
