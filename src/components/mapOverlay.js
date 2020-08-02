@@ -17,8 +17,8 @@ function MapOverlay({list, lat, lng, loc}) {
 		popupAnchor: [0, -32.8]
 	})
 	return (
-		<div className={`overlay ${loc ? 'show' : ''}`} >
-			<Map className="map" center={curPosition} zoom={14} minZoom={13} maxZoom={15} >
+		<div className={`overlay${loc ? ' show' : ''}`} >
+			<Map className={`map${loc ? ' show' : ''}`} center={curPosition} zoom={14} minZoom={13} maxZoom={15} >
 				<TileLayer
 				attribution='' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 				/>

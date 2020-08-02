@@ -11,7 +11,6 @@ function App() {
 		const params = {
 			client_id: "NAVENW2HU2XT13XMVHCII1JKPRLTXCWEV0TXT1NF2Z4BCZNI",
 			client_secret: "TXVHWKA3UMMHFBN1FI1FSMEHKRS4XI2EQLRE12BP5UUFHXUO",
-			near: addr,
 			ll: [lat, lng],
 			query: "food",
 			radius: 2500,
@@ -23,15 +22,14 @@ function App() {
 			setLoc(true);
 		})
 	}
-	const searchUpdate = (e) => {
-		//Regex for illegal characters
-			let srcVal = e.target.value;
-			const regExp = /[^\w\s-]/g;
-			if (srcVal.match(regExp)) {
-				srcVal = srcVal.replace(regExp, '');
-			}
-			inputAddr(srcVal);
-	}
+	// const searchUpdate = (e) => {
+	// 		let srcVal = e.target.value;
+	// 		const regExp = /[^,\w\s-]/g;
+	// 		if (srcVal.match(regExp)) {
+	// 			srcVal = srcVal.replace(regExp, '');
+	// 		}
+	// 		inputAddr(srcVal);
+	// }
 	useEffect(() => {
 		navigator.geolocation.getCurrentPosition((position) => {
 			setLat(position.coords.latitude);
@@ -42,12 +40,12 @@ function App() {
 	const [lat, setLat] = useState(0);
 	const [lng, setLng] = useState(0);
 	const [loc, setLoc] = useState(false);
-	const [addr, inputAddr] = useState('');
+	// const [addr, inputAddr] = useState('');
 	return (
 		<div className="App">
 			<SearchContainer 
-				addr={addr}
-				searchUpdate={searchUpdate}
+				// addr={addr}
+				// searchUpdate={searchUpdate}
 				lat={lat}
 				lng={lng}
 				loc={loc}

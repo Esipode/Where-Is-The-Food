@@ -3,7 +3,7 @@ import Venue from './venue';
 
 function VenueContainer({list}) {
 	return (
-		<div className="container">
+		<div className={`venueContainer${!list.length ? "" : " showContainer"}`}>
 			{list.map((venue, index) => {
 				return <Venue
 					info={venue}
