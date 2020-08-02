@@ -1,7 +1,7 @@
 import React from 'react';
 import Venue from './venue';
 
-function Container({list}) {
+function VenueContainer({list}) {
 	return (
 		<div className="container">
 			{list.map((venue, index) => {
@@ -14,4 +14,4 @@ function Container({list}) {
 	);
 }
 
-export default Container;
+export default VenueContainer;

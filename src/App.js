@@ -1,15 +1,17 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
 import Axios from 'axios';
-import Container from './components/container';
-import Overlay from './components/overlay';
+import VenueContainer from './components/venueContainer';
+import MapOverlay from './components/mapOverlay';
+import SearchContainer from './components/searchContainer';
 
 function App() {
-	const getVenues = (lat, lng) => {
+	const getVenues = () => {
 		const endPoint = "https://api.foursquare.com/v2/venues/explore?";
 		const params = {
 			client_id: "NAVENW2HU2XT13XMVHCII1JKPRLTXCWEV0TXT1NF2Z4BCZNI",
 			client_secret: "TXVHWKA3UMMHFBN1FI1FSMEHKRS4XI2EQLRE12BP5UUFHXUO",
+			near: addr,
 			ll: [lat, lng],
 			query: "food",
 			radius: 2500,
@@ -43,19 +45,16 @@ function App() {
 	const [addr, inputAddr] = useState('');
 	return (
 		<div className="App">
-			<div className="searchContainer">
-				<button className="findBtn" ><span role="img" aria-label="location">&#x1F4CD;</span>{addr === '' ? 'Or Find It' : 'Find Me'}</button>
-				<input 
-					className="searchBar" 
-					placeholder="Enter your location"
-					type="text"
-					value={addr}
-					onChange={searchUpdate}
-				/>
-				<button className={`witfBtn ${!loc || (lat === 0 && lng === 0) ? 'hideBtn' : ''}`} onClick={() => getVenues(lat, lng)} ></button>
-			</div>
-			<Container list={list} />
-			<Overlay style={{display: !loc ? 'none' : 'block'}}
+			<SearchContainer 
+				addr={addr}
+				searchUpdate={searchUpdate}
+				lat={lat}
+				lng={lng}
+				loc={loc}
+				getVenues={getVenues}
+			/>
+			<VenueContainer list={list} />
+			<MapOverlay style={{display: !loc ? 'none' : 'block'}}
 				list={list}
 				lat={lat}
 				lng={lng}
