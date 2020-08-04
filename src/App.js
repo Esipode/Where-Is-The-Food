@@ -21,6 +21,8 @@ function App() {
 		Axios.get(endPoint + new URLSearchParams(params)).then(response => {
 			setList(response.data.response.groups[0].items);
 			setLoc(true);
+		}, (err) => {
+			alert("Location not found!\nMake sure 'Location Services' is enabled!");
 		})
 	}
 	const rangeUpdate = (e) => {
