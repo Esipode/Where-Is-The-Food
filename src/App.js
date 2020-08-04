@@ -35,6 +35,9 @@ function App() {
 			}
 			setRange(srcVal * 1000);
 	}
+	const setVenue = (index) => {
+		setCurVenue(index);
+	}
 	useEffect(() => {
 		navigator.geolocation.getCurrentPosition((position) => {
 			setLat(position.coords.latitude);
@@ -46,7 +49,8 @@ function App() {
 	const [lng, setLng] = useState(0);
 	const [loc, setLoc] = useState(false);
 	const [range, setRange] = useState(2000);
-	const [prices, setPrices] = useState(1);
+	const [prices, setPrices] = useState(2);
+	const [curVenue, setCurVenue] = useState(0);
 	return (
 		<div className="App">
 			<SearchContainer
@@ -59,12 +63,18 @@ function App() {
 				price={prices}
 				changePrice={setPrices}
 			/>
-			<VenueContainer list={list} />
-			<MapOverlay style={{display: !loc ? 'none' : 'block'}}
+			<VenueContainer
+				list={list}
+				curVenue={curVenue}
+				setVenue={setVenue}
+			/>
+			<MapOverlay 
+				style={{display: !loc ? 'none' : 'block'}}
 				list={list}
 				lat={lat}
 				lng={lng}
 				loc={loc}
+				curVenue={curVenue}
 			/>
 		</div>
 	)

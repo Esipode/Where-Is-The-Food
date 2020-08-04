@@ -1,8 +1,8 @@
 import React from 'react';
 
-function Venue({info}) {
+function Venue({index, info, curVenue}) {
 	return (
-		<div className="venue">
+		<div className="venue" style={curVenue === index ? {display: 'block'} : {display: 'none'}}>
 			<h2 className="name">{info.venue.name}</h2>
 			<h3 className="category">
 				{info.venue.categories[0].name}

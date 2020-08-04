@@ -216,7 +216,7 @@ input[type=number] {
 
 .venueContainer {
 	position: fixed;
-	left: 0;
+	left: calc(50% - 200px);
 	bottom: 0;
 	display: flex;
 	flex-direction: row;
@@ -233,9 +233,9 @@ input[type=number] {
 }
 
 .venue {
-	width: calc((100vw / 3) - 21px);
+	width: 100vw;
+	max-width: 380px;
 	background: rgba(255,255,255,0.8);
-	border-right: 2px solid rgba(0,0,0,0.1);
 	padding: 10px;
 }
 
