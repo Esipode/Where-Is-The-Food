@@ -13,7 +13,8 @@ function App() {
 			client_secret: "TXVHWKA3UMMHFBN1FI1FSMEHKRS4XI2EQLRE12BP5UUFHXUO",
 			ll: [lat, lng],
 			query: "food",
-			radius: 2500,
+			radius: range,
+			price: 1,prices,
 			limit: 50,
 			v: 20180323
 		}
@@ -22,14 +23,16 @@ function App() {
 			setLoc(true);
 		})
 	}
-	// const searchUpdate = (e) => {
-	// 		let srcVal = e.target.value;
-	// 		const regExp = /[^,\w\s-]/g;
-	// 		if (srcVal.match(regExp)) {
-	// 			srcVal = srcVal.replace(regExp, '');
-	// 		}
-	// 		inputAddr(srcVal);
-	// }
+	const rangeUpdate = (e) => {
+			let srcVal = e.target.value;
+			if (srcVal < 1) {
+				srcVal = 1;
+			}
+			else if (srcVal > 5) {
+				srcVal = 5
+			}
+			setRange(srcVal * 1000);
+	}
 	useEffect(() => {
 		navigator.geolocation.getCurrentPosition((position) => {
 			setLat(position.coords.latitude);
@@ -40,16 +43,19 @@ function App() {
 	const [lat, setLat] = useState(0);
 	const [lng, setLng] = useState(0);
 	const [loc, setLoc] = useState(false);
-	// const [addr, inputAddr] = useState('');
+	const [range, setRange] = useState(2000);
+	const [prices, setPrices] = useState(1);
 	return (
 		<div className="App">
-			<SearchContainer 
-				// addr={addr}
-				// searchUpdate={searchUpdate}
+			<SearchContainer
 				lat={lat}
 				lng={lng}
 				loc={loc}
+				rangeUpdate={rangeUpdate}
 				getVenues={getVenues}
+				range={range}
+				price={prices}
+				changePrice={setPrices}
 			/>
 			<VenueContainer list={list} />
 			<MapOverlay style={{display: !loc ? 'none' : 'block'}}

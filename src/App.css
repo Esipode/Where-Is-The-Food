@@ -37,25 +37,36 @@ body {
 	}
 }
 
-@keyframes searchIntro {
-	0% {
-		opacity: 0;
-		width: 0px;
-	}
-	100% {
-		opacity: 1;
-		width: 425px;
-	}
-}
-
 @keyframes findBtnIntro {
 	0% {
 		opacity: 0;
-		bottom: -100px;
+		margin-top: 50px;
 	}
 	100% {
 		opacity: 1;
-		bottom: -40px;
+		margin-top: 0px;
+	}
+}
+
+@keyframes rangeContainerIntro {
+	0% {
+		opacity: 0;
+		margin-right: 50px;
+	}
+	100% {
+		opacity: 1;
+		margin-right: 0px;
+	}
+}
+
+@keyframes priceContainerIntro {
+	0% {
+		opacity: 0;
+		margin-left: 50px;
+	}
+	100% {
+		opacity: 1;
+		margin-left: 0px;
 	}
 }
 
@@ -65,10 +76,10 @@ body {
 	place-items: center;
     justify-content: center;
 	position: absolute;
-	height: 320px;
+	height: 380px;
 	width: 300px;
 	opacity: 1;
-	top: calc(50% - 160px);
+	top: calc(50% - 190px);
 	left: calc(50% - 150px);
 	transition: 0.5s ease-in-out;
 }
@@ -76,44 +87,6 @@ body {
 .searchContainer.hideContainer {
 	pointer-events: none;
 	opacity: 0;	
-}
-
-.searchBar {
-	outline: none;
-	width: 0px;
-	height: 25px;
-	font-size: 28px;
-	opacity: 0;
-	border-bottom: 2px solid rgba(0,0,0,0.5);
-	background: transparent;
-	animation: searchIntro 1s ease-in-out 0.5s forwards;
-}
-
-.searchBar:hover::placeholder, .searchBar:focus::placeholder {
-	opacity: 0.3;
-	transition: all 0.2s linear;
-}
-
-.findBtn {
-	position: absolute;
-	cursor: pointer;
-	outline: none;
-	color: #cc3333;
-	opacity: 0;
-	background: rgba(255,255,255,0.5);
-	border: 2px solid #cc3333;
-	border-radius: 8px;
-	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-	box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.5);
-	padding: 0 5px 0 3px;
-	font-size: 20px;
-	transition: all 0.2s linear;
-	animation: findBtnIntro 1s ease-in-out 0.75s forwards;
-}
-
-.findBtn:hover {
-	background: #cc3333;
-	color: white;
 }
 
 .witfBtn {
@@ -133,6 +106,114 @@ body {
 	transition: opacity 1s ease-in-out;
 	animation: witfGrow 2s infinite;
 }
+
+.options {
+	display: grid;
+	grid-template-columns: repeat(3, 100px);
+	grid-template-rows: 1fr;
+	grid-column-gap: 0px;
+	grid-row-gap: 0px;
+	place-items: center;
+	width: 300px;
+	height: 60px;
+	margin-top: -20px;
+}
+
+.rangeContainer {
+	grid-area: 1 / 1 / 2 / 2;
+	cursor: default;
+	color: #cc3333;
+	border-bottom: 2px solid #cc3333;
+	margin-bottom: 32px;
+	font-size: 20px;
+	opacity: 0;
+	text-align: center;
+	animation: rangeContainerIntro 1s ease-in-out 0.75s forwards;
+	
+}
+
+.rangeContainer span {
+	display: block;
+	font-size: 25px;
+}
+
+.range {
+	grid-area: 1 / 1 / 2 / 2;
+	text-align: center;
+	display: inline-block;
+	outline: none;
+	width: 25px;
+	background: transparent;
+	color: #cc3333;
+	margin: 0 2px;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+	display: none;
+	margin: 0;
+	-webkit-appearance: none;
+}
+
+input[type=number] {
+	-moz-appearance: textfield;
+}
+
+
+
+.findBtn {
+	grid-area: 1 / 2 / 2 / 3;
+	cursor: pointer;
+	outline: none;
+	color: #cc3333;
+	opacity: 0;
+	background: transparent;
+	border: 2px solid #cc3333;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+	box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.5);
+	padding: 0 5px 0 3px;
+	font-size: 20px;
+	transition: all 0.2s linear;
+	animation: findBtnIntro 1s ease-in-out 0.75s forwards;
+}
+
+.findBtn:hover {
+	background: #cc3333;
+	color: white;
+}
+
+.priceContainer {
+	grid-area: 1 / 3 / 2 / 4;
+	margin-bottom: 32px;
+	font-size: 20px;
+	opacity: 0;
+	text-align: center;
+	animation: priceContainerIntro 1s ease-in-out 0.75s forwards;
+}
+
+.priceContainer span {
+	display: block;
+	cursor: default;
+	font-size: 25px;
+	color: #cc3333;
+}
+
+.priceContainer form {
+	font-size: 35px;
+	letter-spacing: 5px;
+}
+
+.priceContainer label {
+	cursor: pointer;
+}
+
+@media only screen and (min-device-width: 769px) {
+	.priceContainer label:hover {
+		opacity: 0.6;
+	}
+}
+
+
 
 .venueContainer {
 	position: fixed;
@@ -154,30 +235,28 @@ body {
 
 .venue {
 	width: calc((100vw / 3) - 21px);
-	background: rgba(255,255,255,0.7);
+	background: rgba(255,255,255,0.8);
 	border-right: 2px solid rgba(0,0,0,0.1);
 	padding: 10px;
 }
 
-.venue h2 {
+.venue .name {
 	display: inline-block;
 	color: #cc3333;
 	font-size: 32px;
+	line-height: 32px;
 }
 
-.venue .infoContainer {
+.venue .category {
+	font-size: 14px;
 	display: inline-block;
 	padding-left: 5px;
 }
 
-.venue h3 {
-	font-size: 12px;
-	opacity: 0.6;
-}
-
-.venue h4 {
-	font-size: 12px;
-	opacity: 0.6;
+.venue .infoContainer {
+	font-size: 14px;
+	line-height: 14px;
+	opacity: 0.7;
 }
 
 .map {
