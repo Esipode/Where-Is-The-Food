@@ -282,7 +282,3 @@ input[type=number] {
 	pointer-events: auto;
 	opacity: 1;
 }
-
-.leaflet-marker-icon:nth-child(1) {
-	filter: hue-rotate(250deg);
-}
