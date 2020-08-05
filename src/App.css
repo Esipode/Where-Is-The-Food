@@ -81,6 +81,30 @@ body {
 	}
 }
 
+@keyframes moveRightArrow {
+	0% {
+		left: -3px;
+	}
+	50% {
+		left: 2px;
+	}
+	100% {
+		left: -3px;
+	}
+}
+
+@keyframes moveLeftArrow {
+	0% {
+		right: -3px;
+	}
+	50% {
+		right: 2px;
+	}
+	100% {
+		right: -3px;
+	}
+}
+
 .searchContainer {
 	display: flex;
 	flex-direction: column;
@@ -277,12 +301,33 @@ input[type=number] {
 .previous, .next {
 	cursor: pointer;
 	position: absolute;
-	place-items: center;
+	height: 76px;
+	width: 50px;
 	outline: none;
 	background: white;
 	color: #cc3333;
 	font-size: 50px;
 	border: 2px solid #cc3333;
+}
+
+.previous span, .next span {
+	position: relative;
+}
+
+.previous span {
+	right: -3px;
+}
+
+.next span {
+	left: -3px;
+}
+
+.previous span:hover {
+	animation: moveLeftArrow 1s ease-in-out infinite;
+}
+
+.next span:hover {
+	animation: moveRightArrow 1s ease-in-out infinite;
 }
 
 .previous {
@@ -332,6 +377,10 @@ input[type=number] {
 .overlay.show {
 	pointer-events: auto;
 	opacity: 1;
+}
+
+.leaflet-marker-icon {
+	filter: drop-shadow(1px 1px 2px black);
 }
 
 .leaflet-marker-icon:not(:nth-child(1)) {
