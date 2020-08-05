@@ -25,18 +25,20 @@ function MapOverlay({curVenue, list, lat, lng, loc}) {
 				<TileLayer
 				attribution='' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 				/>
-				<Marker style={{filter: 'hue-rotate(250deg)'}} position={curPosition} icon={homeIcon} key='home'>
+				<Marker position={curPosition} icon={homeIcon} key='home'>
 					<Popup>
 						Your Location <br /> {lat.toFixed(3)} <br /> {lng.toFixed(3)}
 					</Popup>
 				</Marker>
 				{list.map((venue, index) => {
 					const coords = venue.venue.location.labeledLatLngs[0];
-					return curVenue === index ? <Marker position={[coords.lat, coords.lng]} icon={foodIcon} key={index}>
+					return curVenue === index ? 
+							<Marker position={[coords.lat, coords.lng]} icon={foodIcon} key={index}>
 								<Popup>
 									{venue.venue.name} <br /> {coords.lat.toFixed(3)} <br /> {coords.lng.toFixed(3)}
 								</Popup>
-							</Marker> : ''
+							</Marker> 
+						: ''
 				})}
 			</Map>
 		</div>

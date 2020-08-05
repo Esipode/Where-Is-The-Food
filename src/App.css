@@ -70,6 +70,17 @@ body {
 	}
 }
 
+@keyframes showIcon {
+	0% {
+		width: 0px;
+		height: 0px;
+	}
+	100% {
+		width: 20px;
+		height: 32.8px;
+	}
+}
+
 .searchContainer {
 	display: flex;
 	flex-direction: column;
@@ -217,16 +228,16 @@ input[type=number] {
 .venueContainer {
 	position: fixed;
 	left: calc(50% - 200px);
-	bottom: 0;
+	bottom: -400px;
 	display: flex;
 	align-items: center;
 	flex-direction: row;
-	height: 0px;
-	transition: height 1s ease-in-out 0.75s;
+	height: 200px;
+	transition: bottom 1s ease-in-out 0.75s;
 }
 
 .venueContainer.showContainer {
-	height: 200px;
+	bottom: 0px;
 }
 
 .leaflet-control-container {
@@ -321,4 +332,8 @@ input[type=number] {
 .overlay.show {
 	pointer-events: auto;
 	opacity: 1;
+}
+
+.leaflet-marker-icon:not(:nth-child(1)) {
+	animation: showIcon 0.25s ease-in-out forwards;
 }
