@@ -26,9 +26,9 @@ function MapOverlay({curVenue, list, lat, lng, loc}) {
 				attribution='' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 				/>
 				<Marker style={{filter: 'hue-rotate(250deg)'}} position={curPosition} icon={homeIcon} key='home'>
-				<Popup>
-					Your Location <br /> {lat.toFixed(3)} <br /> {lng.toFixed(3)}
-				</Popup>
+					<Popup>
+						Your Location <br /> {lat.toFixed(3)} <br /> {lng.toFixed(3)}
+					</Popup>
 				</Marker>
 				{list.map((venue, index) => {
 					const coords = venue.venue.location.labeledLatLngs[0];
