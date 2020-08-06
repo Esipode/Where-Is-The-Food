@@ -7,6 +7,7 @@ import SearchContainer from './components/searchContainer';
 
 function App() {
 	const getVenues = () => {
+		setSearching(true);
 		const endPoint = "https://api.foursquare.com/v2/venues/explore?";
 		const params = {
 			client_id: "NAVENW2HU2XT13XMVHCII1JKPRLTXCWEV0TXT1NF2Z4BCZNI",
@@ -57,6 +58,7 @@ function App() {
 	const [prices, setPrices] = useState(2);
 	const [curVenue, setCurVenue] = useState(0);
 	const [snapLoc, setSnapLoc] = useState([]);
+	const [searching, setSearching] = useState(false);
 	return (
 		<div className="App">
 			<SearchContainer
@@ -68,6 +70,7 @@ function App() {
 				range={range}
 				price={prices}
 				changePrice={setPrices}
+				searching={searching}
 			/>
 			<VenueContainer
 				list={list}

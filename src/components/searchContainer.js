@@ -1,6 +1,6 @@
 import React from 'react';
 
-function SearchContainer ({changePrice, lat, lng, loc, getVenues, price, range, rangeUpdate}) {
+function SearchContainer ({changePrice, lat, lng, loc, getVenues, price, range, rangeUpdate, searching}) {
 	return (
 		<div className={`searchContainer${!loc || (lat === 0 && lng === 0) ? '' : ' hideContainer'}`}>
 			<button className="witfBtn"></button>
@@ -18,7 +18,7 @@ function SearchContainer ({changePrice, lat, lng, loc, getVenues, price, range, 
 					/>
 					Km
 				</div>
-				<button className="findBtn" onClick={() => getVenues()}>
+				<button className={`findBtn${searching ? " disableBtn" : ""}`} onClick={() => getVenues()}>
 					<span role="img" aria-label="location">&#x1F4CD;</span>
 					Find me
 				</button>
