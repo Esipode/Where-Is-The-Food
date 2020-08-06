@@ -330,6 +330,18 @@ input[type=number] {
 	animation: moveRightArrow 1s ease-in-out infinite;
 }
 
+@media only screen and (max-width: 768px) {
+	.previous span:hover {
+		animation: moveLeftArrow 1s ease-in-out;
+		animation-iteration-count: 1;
+	}
+	
+	.next span:hover {
+		animation: moveRightArrow 1s ease-in-out;
+		animation-iteration-count: 1;
+	}
+}
+
 .previous {
 	border-right: 3px solid white;
 	left: -47px;
@@ -385,4 +397,25 @@ input[type=number] {
 
 .leaflet-marker-icon:not(:nth-child(1)) {
 	animation: showIcon 0.25s ease-in-out forwards;
+}
+
+@media only screen and (max-width: 375px) {
+	.searchContainer {
+		width: 300px;
+		left: calc(50% - 150px);
+	}
+
+	.options {
+		width: 300px;
+		grid-template-columns: repeat(3, 100px);
+	}
+
+	.venueContainer {
+		width: 200px;
+		left: calc(50% - 100px);
+	}
+
+	.venue {
+		max-width: 200px;
+	}
 }
