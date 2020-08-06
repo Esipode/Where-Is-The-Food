@@ -261,7 +261,7 @@ input[type=number] {
 	bottom: -400px;
 	display: flex;
 	align-items: center;
-	flex-direction: row;
+	flex-direction: column;
 	height: 200px;
 	transition: bottom 1s ease-in-out 0.75s;
 }
@@ -278,7 +278,7 @@ input[type=number] {
 	cursor: default;
 	width: 100vw;
 	max-width: 380px;
-	height: 100%;
+	height: 125px;
 	background: white;
 	padding: 10px;
 	border: 2px solid #cc3333;
@@ -304,9 +304,57 @@ input[type=number] {
 	opacity: 0.7;
 }
 
+.choices {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: 1fr;
+	grid-column-gap: 0px;
+	grid-row-gap: 0px;
+	cursor: pointer;
+	background: white;
+	border-right: 2px solid #cc3333;
+	border-left: 2px solid #cc3333;
+	text-align: center;
+	width: 400px;
+	height: 75px;
+}
+
+.choices h2 {
+	font-size: 30px;
+	color: #cc3333;
+}
+
+.decline {
+	grid-area: 1 / 1 / 2 / 2;
+	background: linear-gradient(180deg, rgba(255,42,0,0) 50%, rgba(255,42,0,1) 100%);
+}
+
+.maybe {
+	grid-area: 1 / 2 / 2 / 3;
+	background: linear-gradient(180deg, rgba(0,185,255,0) 50%, rgba(0,185,255,1) 100%);
+}
+
+.okay {
+	grid-area: 1 / 3 / 2 / 4;
+	background: linear-gradient(180deg, rgba(22,255,0,0) 50%, rgba(22,255,0,1) 100%);
+}
+
+.decline:hover {
+	background: linear-gradient(180deg, rgba(255,42,0,0) 25%, rgba(255,42,0,1) 100%);
+}
+
+.maybe:hover {
+	background: linear-gradient(180deg, rgba(0,185,255,0) 25%, rgba(0,185,255,1) 100%);
+}
+
+.okay:hover {
+	background: linear-gradient(180deg, rgba(22,255,0,0) 25%, rgba(22,255,0,1) 100%);
+}
+
 .previous, .next {
 	cursor: pointer;
 	position: absolute;
+	top: 62px;
 	height: 76px;
 	width: 50px;
 	outline: none;
@@ -361,15 +409,13 @@ input[type=number] {
 .previous.hideArrow {
 	border: 2px solid #cc3333;
 	border-right: 3px solid white;
-	background: rgba(255,255,255,0.5);
-	color: rgba(204, 51, 51, 0.5);
+	color: rgba(204, 51, 51, 0.3);
 }
 
 .next.hideArrow {
 	border: 2px solid #cc3333;
 	border-left: 3px solid white;
-	background: rgba(255,255,255,0.5);
-	color: rgba(204, 51, 51, 0.5);
+	color: rgba(204, 51, 51, 0.3);
 }
 
 .map {

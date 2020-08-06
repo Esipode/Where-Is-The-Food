@@ -23,6 +23,20 @@ function VenueContainer({curVenue, list, setVenue}) {
 					curVenue={curVenue}
 				/>
 			})}
+			<div className="choices">
+				<div className="decline">
+					<h2>No</h2>
+					<p>I won't eat there</p>
+				</div>
+				<div className="maybe">
+					<h2>Maybe</h2>
+					<p>I'll think about it</p>
+				</div>
+				<div className="okay">
+					<h2>Yes</h2>
+					<p>I want to eat there</p>
+				</div>
+			</div>
 			<button 
 				className={`next${curVenue === (list.length - 1) ? " hideArrow" : ""}`}
 				onClick={() => incrementVenue(1)}>

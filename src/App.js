@@ -17,13 +17,14 @@ function App() {
 			radius: range,
 			price: 1,prices,
 			limit: 50,
-			v: 20180323
+			v: 20200806
 		}
 		Axios.get(endPoint + new URLSearchParams(params)).then(response => {
 			setList(response.data.response.groups[0].items);
 			setLoc(true);
 		}, (err) => {
 			alert("Location not found!\nMake sure 'Location Services' is enabled!");
+			setSearching(false);
 		})
 	}
 	const rangeUpdate = (e) => {
