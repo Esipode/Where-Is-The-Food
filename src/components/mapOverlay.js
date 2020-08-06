@@ -5,7 +5,7 @@ import homeIcn from '../images/homeIcon.png';
 import venueIcn from '../images/venueIcon.png';
 
 
-function MapOverlay({curVenue, list, lat, lng, loc}) {
+function MapOverlay({curVenue, list, lat, lng, loc, snapLoc}) {
 	const curPosition = [lat, lng];
 	let homeIcon = L.icon({
 		iconUrl: homeIcn,
@@ -21,10 +21,11 @@ function MapOverlay({curVenue, list, lat, lng, loc}) {
 	})
 	return (
 		<div className={`overlay${loc ? ' show' : ''}`} >
-			<Map className={`map${loc ? ' show' : ''}`} center={curPosition} zoom={14} minZoom={13} maxZoom={15} >
+			<Map className={`map${loc ? ' show' : ''}`} center={snapLoc.length ? snapLoc : curPosition} zoom={13} minZoom={13} maxZoom={15} >
 				<TileLayer
 				attribution='' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 				/>
+				<h2 className="homeMarkerText" position={curPosition}>You</h2>
 				<Marker position={curPosition} icon={homeIcon} key='home'>
 					<Popup>
 						Your Location <br /> {lat.toFixed(3)} <br /> {lng.toFixed(3)}

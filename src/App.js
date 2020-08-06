@@ -37,6 +37,11 @@ function App() {
 	}
 	const setVenue = (index) => {
 		setCurVenue(index);
+		//Snap overlay to location between home marker and venue marker
+		const venueLoc = list[index].venue.location;
+		const snapLat = ((venueLoc.lat - lat) / 2) + lat;
+		const snapLng = ((venueLoc.lng - lng) / 2) + lng;
+		setSnapLoc([snapLat, snapLng]);
 	}
 	useEffect(() => {
 		navigator.geolocation.getCurrentPosition((position) => {
@@ -51,6 +56,7 @@ function App() {
 	const [range, setRange] = useState(2000);
 	const [prices, setPrices] = useState(2);
 	const [curVenue, setCurVenue] = useState(0);
+	const [snapLoc, setSnapLoc] = useState([]);
 	return (
 		<div className="App">
 			<SearchContainer
@@ -75,6 +81,7 @@ function App() {
 				lng={lng}
 				loc={loc}
 				curVenue={curVenue}
+				snapLoc={snapLoc}
 			/>
 		</div>
 	)
