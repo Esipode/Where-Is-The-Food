@@ -1,13 +1,13 @@
 import React from 'react';
 
-function Venue({index, info, curVenue, noOptions, pickedOption}) {
+function Venue({index, info, curVenue, noOptions}) {
 	return (
 		<div className="venue" style={curVenue === index ? {display: 'block'} : {display: 'none'}}>
 			<h2 className="name">{info.venue.name}</h2>
 			<h3 className="category">
 				{info.venue.categories[0].name}
 			</h3>
-			<div className='infoContainer'>
+			<div className='infoContainer' style={noOptions ? {display: 'none'} : {display: 'block'}}>
 				<h3 className="address">
 					{info.venue.location.address}
 				</h3>
