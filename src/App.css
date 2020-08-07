@@ -317,6 +317,7 @@ input[type=number] {
 	text-align: center;
 	width: 400px;
 	height: 75px;
+	user-select: none;
 }
 
 .choices h2 {
@@ -362,6 +363,7 @@ input[type=number] {
 	color: #cc3333;
 	font-size: 50px;
 	border: 2px solid #cc3333;
+	user-select: none;
 }
 
 .previous span, .next span {
