@@ -67,6 +67,7 @@ function App() {
 	}
 	const selectedOption = (index) => {
 		setList(list.splice(index, 1));
+		setCurVenue(0);
 		setPickedOption(true);
 	}
 	useEffect(() => {
