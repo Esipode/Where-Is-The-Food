@@ -1,7 +1,7 @@
 import React from 'react';
 import Venue from './venue';
 
-function VenueContainer({curVenue, list, noOptions, removeVenue, setVenue}) {
+function VenueContainer({curVenue, list, noOptions, pickedOption, removeVenue, selectedOption, setVenue}) {
 	const incrementVenue = (change) => {
 		let newValue = curVenue + change;
 		setVenue(
@@ -13,6 +13,10 @@ function VenueContainer({curVenue, list, noOptions, removeVenue, setVenue}) {
 			<div className="noOptions" style={noOptions ? {display: 'flex'} : {display: 'none'}}>
 				<h2>No more options!</h2>
 				<p>Stop being so picky!</p>
+			</div>
+			<div className="pickedOption" style={pickedOption ? {display: 'flex'} : {display: 'none'}}>
+				<h2>Congratulations!</h2>
+				<p>Now go stuff your face!</p>
 			</div>
 			<button 
 				className={`previous${curVenue === 0 ? " hideArrow" : ""}`}
@@ -26,6 +30,7 @@ function VenueContainer({curVenue, list, noOptions, removeVenue, setVenue}) {
 					index={index}
 					curVenue={curVenue}
 					noOptions={noOptions}
+					pickedOption={pickedOption}
 				/>
 			})}
 			<div className="choices">
@@ -37,7 +42,7 @@ function VenueContainer({curVenue, list, noOptions, removeVenue, setVenue}) {
 					<h2>Maybe</h2>
 					<p>I'll think about it</p>
 				</div>
-				<div className="okay">
+				<div className="okay" onClick={() => selectedOption(curVenue)}>
 					<h2>Yes</h2>
 					<p>I want to eat there</p>
 				</div>

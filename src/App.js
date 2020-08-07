@@ -65,6 +65,10 @@ function App() {
 			setList(JSON.parse(JSON.stringify(list)));
 		}
 	}
+	const selectedOption = (index) => {
+		setList(list.splice(index, 1));
+		setPickedOption(true);
+	}
 	useEffect(() => {
 		navigator.geolocation.getCurrentPosition((position) => {
 			setLat(position.coords.latitude);
@@ -81,6 +85,7 @@ function App() {
 	const [snapLoc, setSnapLoc] = useState([]);
 	const [searching, setSearching] = useState(false);
 	const [noOptions, setNoOptions] = useState(false);
+	const [pickedOption, setPickedOption] = useState(false);
 	return (
 		<div className="App">
 			<SearchContainer
@@ -100,6 +105,8 @@ function App() {
 				removeVenue={removeVenue}
 				setVenue={setVenue}
 				noOptions={noOptions}
+				pickedOption={pickedOption}
+				selectedOption={selectedOption}
 			/>
 			<MapOverlay 
 				style={{display: !loc ? 'none' : 'block'}}
