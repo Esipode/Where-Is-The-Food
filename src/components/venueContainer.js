@@ -33,7 +33,7 @@ function VenueContainer({curVenue, list, noOptions, removeVenue, setVenue}) {
 					<h2>No</h2>
 					<p>I won't eat there</p>
 				</div>
-				<div className="maybe">
+				<div className="maybe" onClick={() => setVenue(curVenue + 1)}>
 					<h2>Maybe</h2>
 					<p>I'll think about it</p>
 				</div>

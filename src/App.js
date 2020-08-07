@@ -38,12 +38,17 @@ function App() {
 			setRange(srcVal * 1000);
 	}
 	const setVenue = (index) => {
-		setCurVenue(index);
-		//Snap overlay to location between home marker and venue marker
-		const venueLoc = list[index].venue.location;
-		const snapLat = ((venueLoc.lat - lat) / 2) + lat;
-		const snapLng = ((venueLoc.lng - lng) / 2) + lng;
-		setSnapLoc([snapLat, snapLng]);
+		if (index >= list.length) {
+			return;
+		}
+		else {
+			setCurVenue(index);
+			//Snap overlay to location between home marker and venue marker
+			const venueLoc = list[index].venue.location;
+			const snapLat = ((venueLoc.lat - lat) / 2) + lat;
+			const snapLng = ((venueLoc.lng - lng) / 2) + lng;
+			setSnapLoc([snapLat, snapLng]);
+		}
 	}
 	const removeVenue = (index) => {
 		if (list.length === 1) {
