@@ -64,6 +64,7 @@ function App() {
 			list.splice(index, 1);
 			setList(JSON.parse(JSON.stringify(list)));
 		}
+		setVenue(index);
 	}
 	const selectedOption = (index) => {
 		setList(list.splice(index, 1));
