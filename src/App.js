@@ -10,8 +10,8 @@ function App() {
 		setSearching(true);
 		const endPoint = "https://api.foursquare.com/v2/venues/explore?";
 		const params = {
-			client_id: "NAVENW2HU2XT13XMVHCII1JKPRLTXCWEV0TXT1NF2Z4BCZNI",
-			client_secret: "TXVHWKA3UMMHFBN1FI1FSMEHKRS4XI2EQLRE12BP5UUFHXUO",
+			client_id: process.env.REACT_APP_CLIENT_ID,
+			client_secret: process.env.REACT_APP_CLIENT_SECRET,
 			ll: [lat, lng],
 			query: "food",
 			radius: range,
