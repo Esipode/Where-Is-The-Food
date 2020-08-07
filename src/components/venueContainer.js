@@ -1,7 +1,7 @@
 import React from 'react';
 import Venue from './venue';
 
-function VenueContainer({curVenue, list, setVenue}) {
+function VenueContainer({curVenue, list, noOptions, removeVenue, setVenue}) {
 	const incrementVenue = (change) => {
 		let newValue = curVenue + change;
 		setVenue(
@@ -10,6 +10,10 @@ function VenueContainer({curVenue, list, setVenue}) {
 	}
 	return (
 		<div className={`venueContainer${!list.length ? "" : " showContainer"}`}>
+			<div className="noOptions" style={noOptions ? {display: 'flex'} : {display: 'none'}}>
+				<h2>No more options!</h2>
+				<p>Stop being so picky!</p>
+			</div>
 			<button 
 				className={`previous${curVenue === 0 ? " hideArrow" : ""}`}
 				onClick={() => incrementVenue(-1)}>
@@ -21,10 +25,11 @@ function VenueContainer({curVenue, list, setVenue}) {
 					key={index}
 					index={index}
 					curVenue={curVenue}
+					noOptions={noOptions}
 				/>
 			})}
 			<div className="choices">
-				<div className="decline">
+				<div className="decline" onClick={() => removeVenue(curVenue)}>
 					<h2>No</h2>
 					<p>I won't eat there</p>
 				</div>

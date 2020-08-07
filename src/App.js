@@ -45,6 +45,21 @@ function App() {
 		const snapLng = ((venueLoc.lng - lng) / 2) + lng;
 		setSnapLoc([snapLat, snapLng]);
 	}
+	const removeVenue = (index) => {
+		if (list.length === 1) {
+			setNoOptions(true);
+		}
+		else if (curVenue >= (list.length - 1)) {
+			setVenue(curVenue - 1);
+		}
+		else {
+			setVenue(curVenue);
+		}
+		if (list.length !== 1) {
+			list.splice(index, 1);
+			setList(JSON.parse(JSON.stringify(list)));
+		}
+	}
 	useEffect(() => {
 		navigator.geolocation.getCurrentPosition((position) => {
 			setLat(position.coords.latitude);
@@ -60,6 +75,7 @@ function App() {
 	const [curVenue, setCurVenue] = useState(0);
 	const [snapLoc, setSnapLoc] = useState([]);
 	const [searching, setSearching] = useState(false);
+	const [noOptions, setNoOptions] = useState(false);
 	return (
 		<div className="App">
 			<SearchContainer
@@ -76,7 +92,9 @@ function App() {
 			<VenueContainer
 				list={list}
 				curVenue={curVenue}
+				removeVenue={removeVenue}
 				setVenue={setVenue}
+				noOptions={noOptions}
 			/>
 			<MapOverlay 
 				style={{display: !loc ? 'none' : 'block'}}

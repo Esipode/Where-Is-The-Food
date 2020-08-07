@@ -304,6 +304,27 @@ input[type=number] {
 	opacity: 0.7;
 }
 
+.noOptions {
+	flex-direction: column;
+    position: absolute;
+    height: 100%;
+    width: calc(100% - 4px);
+    justify-content: center;
+    align-items: center;
+    background: white;
+	border: 2px solid #cc3333;
+	user-select: none;
+}
+
+.noOptions h2 {
+	color: #cc3333;
+	font-size: 35px;
+}
+
+.noOptions p {
+	font-size: 20px;
+}
+
 .choices {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
