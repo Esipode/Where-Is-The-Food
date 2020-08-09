@@ -21,7 +21,7 @@ function VenueContainer({curVenue, list, noOptions, pickedOption, removeVenue, s
 			<button 
 				className={`previous${curVenue === 0 ? " hideArrow" : ""}`}
 				onClick={() => incrementVenue(-1)}>
-					<span>&#129068;</span>
+					<span>&#8701;</span>
 			</button>
 			{list.map((venue, index) => {
 				return <Venue
@@ -50,7 +50,7 @@ function VenueContainer({curVenue, list, noOptions, pickedOption, removeVenue, s
 			<button 
 				className={`next${curVenue === (list.length - 1) ? " hideArrow" : ""}`}
 				onClick={() => incrementVenue(1)}>
-					<span>&#129070;</span>
+					<span>&#8702;</span>
 			</button>
 		</div>
 	);
