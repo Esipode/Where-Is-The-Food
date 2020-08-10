@@ -21,7 +21,7 @@ function MapOverlay({curVenue, list, lat, lng, loc, snapLoc}) {
 	})
 	return (
 		<div className={`overlay${loc ? ' show' : ''}`} >
-			<Map className={`map${loc ? ' show' : ''}`} center={snapLoc.length ? snapLoc : curPosition} zoom={13} minZoom={13} maxZoom={15} >
+			<Map className={`map${loc ? ' show' : ''}`} center={snapLoc.length ? snapLoc : curPosition} zoom={13} minZoom={12} maxZoom={15} >
 				<TileLayer
 				attribution='' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 				/>

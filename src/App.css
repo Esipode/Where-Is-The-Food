@@ -1,7 +1,6 @@
 * {
 	margin: 0;
 	padding: 0;
-	padding: env(safe-area-inset);
 	border: none;
 	font-size: 100%;
 	font: inherit;
@@ -10,6 +9,7 @@
 
 body {
 	--bodyColor: #cc3333;
+	padding: env(safe-area-inset);
 	font-family: 'Bebas Neue', Arial, Helvetica, sans-serif;
 }
 
@@ -473,10 +473,8 @@ input[type=number] {
 .map {
 	position: fixed;
 	z-index: -1;
-	top: 0;
-	left: 0;
-	height: 100vh;
-	width: 100vw;
+	height: 100%;
+	width: 100%;
 	visibility: hidden;
 }
 
@@ -550,6 +548,11 @@ input[type=number] {
 
 	.venue {
 		max-width: 200px;
+	}
+
+	.venue .name {
+		font-size: 24px;
+		line-height: 24px;
 	}
 	
 	.venue .category {
