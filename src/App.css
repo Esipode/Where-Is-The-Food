@@ -1,6 +1,7 @@
 * {
 	margin: 0;
 	padding: 0;
+	padding: env(safe-area-inset);
 	border: none;
 	font-size: 100%;
 	font: inherit;
@@ -408,6 +409,7 @@ input[type=number] {
 	background: white;
 	color: var(--bodyColor);
 	font-size: 50px;
+	line-height: 35px;
 	border: 2px solid var(--bodyColor);
 	user-select: none;
 }
@@ -553,5 +555,35 @@ input[type=number] {
 	.venue .category {
 		display: block;
 		padding-left: 0px;
+	}
+}
+
+@media only screen and (max-height: 500px) {
+	.searchContainer {
+		height: 320px;
+		margin-top: 15px;
+	}
+
+	.witfBtn {
+		height: 240px;
+		background-size: 170px 240px;
+	}
+
+	.venueContainer {
+		height: 160px;
+	}
+
+	.previous, .next {
+		top: 45px;
+	}
+
+	.choices {
+		height: 65px;
+	}
+}
+
+@media only screen and (max-device-height: 500px) and (max-device-width: 500) {
+	.venue .category {
+		display: none;
 	}
 }
