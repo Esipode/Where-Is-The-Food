@@ -25,7 +25,6 @@ function MapOverlay({curVenue, list, lat, lng, loc, snapLoc}) {
 				<TileLayer
 				attribution='' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 				/>
-				<h2 className="homeMarkerText" position={curPosition}>You</h2>
 				<Marker position={curPosition} icon={homeIcon} key='home'>
 					<Popup>
 						Your Location <br /> {lat.toFixed(3)} <br /> {lng.toFixed(3)}
