@@ -1,6 +1,22 @@
 import React from 'react';
+import {OpenStreetMapProvider} from 'leaflet-geosearch';
 
-function SearchContainer ({changePrice, lat, lng, loc, getVenues, price, range, rangeUpdate, searching}) {
+function SearchContainer ({addr, changePrice, lat, lng, loc, getVenues, price, range, rangeUpdate, searching, setLat, setLng, searchUpdate}) {
+	const provider = new OpenStreetMapProvider();
+	const getAddress = () => {
+		if (addr) {
+			provider.search({query: addr})
+				.then(res => {
+					setLng(res[0].x);
+					setLat(res[0].y);
+			}).then(() => {
+				getVenues();
+			})
+		}
+		else {
+			getVenues();
+		}
+	}
 	return (
 		<div className={`searchContainer${!loc || (lat === 0 && lng === 0) ? '' : ' hideContainer'}`}>
 			<button className="witfBtn"></button>
@@ -18,10 +34,18 @@ function SearchContainer ({changePrice, lat, lng, loc, getVenues, price, range, 
 					/>
 					Km
 				</div>
-				<button className={`findBtn${searching ? " disableBtn" : ""}`} onClick={() => getVenues()}>
+				<button className={`findBtn${searching ? " disableBtn" : ""}`} onClick={() => getAddress()}>
 					<span role="img" aria-label="location">&#x1F4CD;</span>
 					Find me
 				</button>
+				<input 
+					onKeyDown={(e) => {if (e.key === "Enter") {getAddress()}}}
+					className="searchBar" 
+					placeholder="Or enter your location"
+					type="text"
+					value={addr}
+					onChange={searchUpdate}
+				/>
 				<div className="priceContainer">
 					<span>Price</span>
 					<form>

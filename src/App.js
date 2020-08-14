@@ -23,7 +23,7 @@ function App() {
 			setList(response.data.response.groups[0].items);
 			setLoc(true);
 		}, (err) => {
-			alert("Location not found!\nMake sure 'Location Services' is enabled!");
+			alert("Location not found!\nMake sure 'Location Services' is enabled, or address is entered correctly!");
 			setSearching(false);
 		})
 	}
@@ -71,6 +71,15 @@ function App() {
 		setCurVenue(0);
 		setPickedOption(true);
 	}
+	const searchUpdate = (e) => {
+		//Regex for illegal characters
+		let srcVal = e.target.value;
+		const regExp = /[^\w\s-]/g;
+		if (srcVal.match(regExp)) {
+			srcVal = srcVal.replace(regExp, '');
+		}
+		inputAddr(srcVal);
+	}
 	useEffect(() => {
 		navigator.geolocation.getCurrentPosition((position) => {
 			setLat(position.coords.latitude);
@@ -88,11 +97,14 @@ function App() {
 	const [searching, setSearching] = useState(false);
 	const [noOptions, setNoOptions] = useState(false);
 	const [pickedOption, setPickedOption] = useState(false);
+	const [addr, inputAddr] = useState('');
 	return (
 		<div className="App">
 			<SearchContainer
 				lat={lat}
+				setLat={setLat}
 				lng={lng}
+				setLng={setLng}
 				loc={loc}
 				rangeUpdate={rangeUpdate}
 				getVenues={getVenues}
@@ -100,6 +112,8 @@ function App() {
 				price={prices}
 				changePrice={setPrices}
 				searching={searching}
+				addr={addr}
+				searchUpdate={searchUpdate}
 			/>
 			<VenueContainer
 				list={list}
