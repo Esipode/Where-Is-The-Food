@@ -6,13 +6,17 @@ import MapOverlay from './components/mapOverlay';
 import SearchContainer from './components/searchContainer';
 
 function App() {
-	const getVenues = () => {
+	const getVenues = (latitude, longitude) => {
 		setSearching(true);
+		if (latitude || longitude) {
+			setLat(latitude);
+			setLng(longitude);
+		}
 		const endPoint = "https://api.foursquare.com/v2/venues/explore?";
 		const params = {
 			client_id: process.env.REACT_APP_CLIENT_ID,
 			client_secret: process.env.REACT_APP_CLIENT_SECRET,
-			ll: [lat, lng],
+			ll: latitude || longitude ? [latitude, longitude] : [lat, lng],
 			query: "food",
 			radius: range,
 			price: 1,prices,
@@ -30,9 +34,9 @@ function App() {
 	const rangeUpdate = (e) => {
 			let srcVal = e.target.value;
 			if (srcVal < 1) {
-				srcVal = 1;
-			}
-			else if (srcVal > 5) {
+                srcVal = 1;
+            }
+            else if (srcVal > 5) {
 				srcVal = 5
 			}
 			setRange(srcVal * 1000);
@@ -81,10 +85,12 @@ function App() {
 		inputAddr(srcVal);
 	}
 	useEffect(() => {
-		navigator.geolocation.getCurrentPosition((position) => {
-			setLat(position.coords.latitude);
-			setLng(position.coords.longitude);
-		})
+		if (lat === 0 && lng === 0) {
+			navigator.geolocation.getCurrentPosition((position) => {
+				setLat(position.coords.latitude);
+				setLng(position.coords.longitude);
+			})
+		}
 	})
 	const [list, setList] = useState([]);
 	const [lat, setLat] = useState(0);

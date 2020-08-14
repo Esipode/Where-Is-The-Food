@@ -114,7 +114,7 @@ body {
 	}
 	100% {
 		opacity: 1;
-		width: 400px;
+		width: 100%;
 	}
 }
 
@@ -158,14 +158,13 @@ body {
 .searchBar {
 	grid-area: 1 / 1 / 2 / 4;
 	position: relative;
-	bottom: -20px;
+	bottom: -25px;
 	outline: none;
-	margin-top: 15px;
 	width: 0px;
-	height: 25px;
 	font-size: 28px;
 	opacity: 0;
 	border-bottom: 2px solid var(--bodyColor);
+	border-radius: 0;
 	background: transparent;
 	text-align: center;
 	align-self: end;
@@ -601,13 +600,13 @@ input[type=number] {
 
 @media only screen and (max-height: 500px) {
 	.searchContainer {
-		height: 320px;
+		height: 300px;
 		margin-top: 15px;
 	}
 
 	.witfBtn {
-		height: 240px;
-		background-size: 170px 240px;
+		height: 170px;
+		background-size: 170px 170px;
 	}
 
 	.venueContainer {

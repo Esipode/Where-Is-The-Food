@@ -4,13 +4,21 @@ import {OpenStreetMapProvider} from 'leaflet-geosearch';
 function SearchContainer ({addr, changePrice, lat, lng, loc, getVenues, price, range, rangeUpdate, searching, setLat, setLng, searchUpdate}) {
 	const provider = new OpenStreetMapProvider();
 	const getAddress = () => {
+		let latitude = 0;
+		let longitude = 0;
 		if (addr) {
 			provider.search({query: addr})
 				.then(res => {
-					setLng(res[0].x);
-					setLat(res[0].y);
+					console.log(res);
+					if (res.length) {
+						console.log('working');
+						setLat(res[0].y);
+						setLng(res[0].x);
+						latitude = res[0].y;
+						longitude = res[0].x;
+					}
 			}).then(() => {
-				getVenues();
+				getVenues(latitude, longitude);
 			})
 		}
 		else {
