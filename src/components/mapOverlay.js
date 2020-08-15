@@ -23,7 +23,9 @@ function MapOverlay({curVenue, list, lat, lng, loc, snapLoc}) {
 		<div className={`overlay${loc ? ' show' : ''}`} >
 			<Map className={`map${loc ? ' show' : ''}`} center={snapLoc.length ? snapLoc : curPosition} zoom={13} minZoom={12} maxZoom={15} >
 				<TileLayer
-				attribution='' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+					attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+				/>
 				/>
 				<Marker position={curPosition} icon={homeIcon} key='home'>
 					<Popup>
