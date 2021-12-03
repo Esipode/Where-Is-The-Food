@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import './App.css';
+import './App.scss';
 import Axios from 'axios';
 import VenueContainer from './components/venueContainer';
 import MapOverlay from './components/mapOverlay';

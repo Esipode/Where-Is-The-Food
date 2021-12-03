@@ -9,9 +9,7 @@ function SearchContainer ({addr, changePrice, lat, lng, loc, getVenues, price, r
 		if (addr) {
 			provider.search({query: addr})
 				.then(res => {
-					console.log(res);
 					if (res.length) {
-						console.log('working');
 						setLat(res[0].y);
 						setLng(res[0].x);
 						latitude = res[0].y;

@@ -1,3 +1,15 @@
+@mixin small {
+	@media only screen and (max-width: 500px) {
+		@content;
+	}
+}
+
+@mixin landscape {
+	@media only screen and (max-height: 500px) {
+		@content;
+	}
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -85,25 +97,25 @@ body {
 
 @keyframes moveRightArrow {
 	0% {
-		left: -3px;
+		left: 0px;
 	}
 	50% {
-		left: 2px;
+		left: 4px;
 	}
 	100% {
-		left: -3px;
+		left: 0px;
 	}
 }
 
 @keyframes moveLeftArrow {
 	0% {
-		right: -3px;
+		right: 0px;
 	}
 	50% {
-		right: 2px;
+		right: 4px;
 	}
 	100% {
-		right: -3px;
+		right: 0px;
 	}
 }
 
@@ -130,11 +142,21 @@ body {
 	top: calc(50% - 190px);
 	left: calc(50% - 200px);
 	transition: 0.5s ease-in-out;
-}
 
-.searchContainer.hideContainer {
-	pointer-events: none;
-	opacity: 0;	
+	@include small {
+		width: 300px;
+		left: calc(50% - 150px);
+	}
+
+	@include landscape {
+		height: 300px;
+		margin-top: 15px;
+	}
+
+	&.hideContainer {
+		pointer-events: none;
+		opacity: 0;
+	}
 }
 
 .witfBtn {
@@ -153,6 +175,11 @@ body {
 	font-size: 24px;
 	transition: opacity 1s ease-in-out;
 	animation: witfGrow 2s infinite;
+
+	@include landscape {
+		height: 170px;
+		background-size: 170px 170px;
+	}
 }
 
 .searchBar {
@@ -169,16 +196,16 @@ body {
 	text-align: center;
 	align-self: end;
 	animation: searchIntro 1.5s ease-in-out 0.75s forwards;
-}
 
-.searchBar::placeholder {
-	color: black;
-	opacity: 0.5;
-	transition: all 0.2s linear;
-}
+	&::placeholder {
+		color: black;
+		opacity: 0.5;
+		transition: all 0.2s linear;
+	}
 
-.searchBar:hover::placeholder, .searchBar:focus::placeholder {
-	opacity: 0.3;
+	&:hover::placeholder, &:focus::placeholder {
+		opacity: 0.3;
+	}
 }
 
 .options {
@@ -191,6 +218,11 @@ body {
 	width: 400px;
 	height: 80px;
 	margin-top: -20px;
+
+	@include small {
+		width: 300px;
+		grid-template-columns: repeat(3, 100px);
+	}
 }
 
 .rangeContainer {
@@ -203,13 +235,13 @@ body {
 	opacity: 0;
 	text-align: center;
 	animation: rangeContainerIntro 1s ease-in-out 0.75s forwards;
-	
-}
 
-.rangeContainer span {
-	display: block;
-	font-size: 30px;
-	margin-bottom: 8px;
+	span {
+		display: block;
+		font-size: 30px;
+		margin-bottom: 8px;
+	}
+	
 }
 
 .range {
@@ -223,18 +255,16 @@ body {
 	margin: 0 2px;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-	display: none;
-	margin: 0;
-	-webkit-appearance: none;
-}
-
 input[type=number] {
 	-moz-appearance: textfield;
+
+	&::-webkit-inner-spin-button, 
+	&::-webkit-outer-spin-button {
+		display: none;
+		margin: 0;
+		-webkit-appearance: none;
+	}
 }
-
-
 
 .findBtn {
 	grid-area: 1 / 2 / 2 / 3;
@@ -250,17 +280,17 @@ input[type=number] {
 	font-size: 24px;
 	transition: all 0.2s linear;
 	animation: findBtnIntro 1s ease-in-out 0.75s forwards;
-}
 
-.findBtn:hover {
-	background: var(--bodyColor);
-	color: white;
-}
+	&:hover {
+		background: var(--bodyColor);
+		color: white;
+	}
 
-.findBtn.disableBtn {
-	pointer-events: none;
-	border: 2px solid #cc333355;
-	color: #cc333355;
+	&.disableBtn {
+		pointer-events: none;
+		border: 2px solid #cc333355;
+		color: #cc333355;
+	}
 }
 
 .priceContainer {
@@ -270,27 +300,27 @@ input[type=number] {
 	opacity: 0;
 	text-align: center;
 	animation: priceContainerIntro 1s ease-in-out 0.75s forwards;
-}
 
-.priceContainer span {
-	display: block;
-	cursor: default;
-	font-size: 30px;
-	color: var(--bodyColor);
-}
+	span {
+		display: block;
+		cursor: default;
+		font-size: 30px;
+		color: var(--bodyColor);
+	}
 
-.priceContainer form {
-	font-size: 35px;
-	letter-spacing: 5px;
-}
+	form {
+		font-size: 35px;
+		letter-spacing: 5px;
+	}
 
-.priceContainer label {
-	cursor: pointer;
-}
+	label {
+		cursor: pointer;
 
-@media only screen and (min-device-width: 769px) {
-	.priceContainer label:hover {
-		opacity: 0.6;
+		&:hover {
+			@media only screen and (min-device-width: 769px) {
+				opacity: 0.6;
+			}
+		}
 	}
 }
 
@@ -303,10 +333,19 @@ input[type=number] {
 	flex-direction: column;
 	height: 200px;
 	transition: bottom 1s ease-in-out 0.75s;
-}
 
-.venueContainer.showContainer {
-	bottom: 0px;
+	@include small {
+		width: 200px;
+		left: calc(50% - 100px);
+	}
+
+	@include landscape {
+		height: 160px;
+	}
+
+	&.showContainer {
+		bottom: 20px;
+	}
 }
 
 .leaflet-control-container {
@@ -322,25 +361,44 @@ input[type=number] {
 	padding: 10px;
 	border: 2px solid var(--bodyColor);
 	border-bottom: none;
-}
+	border-radius: 10px 10px 0 0;
 
-.venue .name {
-	display: inline-block;
-	color: var(--bodyColor);
-	font-size: 32px;
-	line-height: 32px;
-}
+	@include small {
+		max-width: 200px;
+	}
 
-.venue .category {
-	font-size: 18px;
-	display: inline-block;
-	padding-left: 5px;
-}
+	.name {
+		display: inline-block;
+		color: var(--bodyColor);
+		font-size: 32px;
+		line-height: 32px;
 
-.venue .infoContainer {
-	font-size: 14px;
-	line-height: 14px;
-	opacity: 0.7;
+		@include small {
+			font-size: 24px;
+			line-height: 24px;
+		}
+	}
+
+	.category {
+		font-size: 18px;
+		display: inline-block;
+		padding-left: 5px;
+
+		@include small {
+			display: block;
+			padding-left: 0px;
+		}
+
+		@media only screen and (max-device-height: 500px) and (max-device-width: 500) {
+			display: none;
+		}
+	}
+
+	.infoContainer {
+		font-size: 14px;
+		line-height: 14px;
+		opacity: 0.7;
+	}
 }
 
 .noOptions {
@@ -352,16 +410,21 @@ input[type=number] {
     align-items: center;
     background: white;
 	border: 2px solid var(--bodyColor);
+	border-radius: 10px;
 	user-select: none;
-}
 
-.noOptions h2 {
-	color: var(--bodyColor);
-	font-size: 35px;
-}
+	@include small {
+		width: 220px;
+	}
 
-.noOptions p {
-	font-size: 20px;
+	h2 {
+		color: var(--bodyColor);
+		font-size: 35px;
+	}
+
+	p {
+		font-size: 20px;
+	}
 }
 
 .pickedOption {
@@ -376,18 +439,23 @@ input[type=number] {
 	user-select: none;
 	border-left: 2px solid var(--bodyColor);
 	border-right: 2px solid var(--bodyColor);
-}
 
-.pickedOption h2 {
-	color: var(--bodyColor);
-	font-size: 35px;
-}
+	@include small {
+		width: 220px;
+	}
 
-.pickedOption p {
-	font-size: 20px;
+	h2 {
+		color: var(--bodyColor);
+		font-size: 35px;
+	}
+
+	p {
+		font-size: 20px;
+	}
 }
 
 .choices {
+	overflow: hidden;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	grid-template-rows: 1fr;
@@ -397,115 +465,166 @@ input[type=number] {
 	background: white;
 	border-right: 2px solid var(--bodyColor);
 	border-left: 2px solid var(--bodyColor);
+	border-bottom: 2px solid var(--bodyColor);
+	border-radius: 0 0 10px 10px;
 	text-align: center;
 	width: 400px;
 	height: 75px;
 	user-select: none;
-}
 
-.choices h2 {
-	font-size: 30px;
-	color: var(--bodyColor);
+	@include small {
+		width: 220px;
+		height: 60px;
+
+		p {
+			font-size: 11px;
+		}
+	}
+
+	@include landscape {
+		height: 65px;
+	}
+
+	h2 {
+		font-size: 30px;
+		color: var(--bodyColor);
+
+		@include small {
+			font-size: 25px;
+		}
+	}
 }
 
 .decline {
 	grid-area: 1 / 1 / 2 / 2;
 	background: linear-gradient(180deg, rgba(255,42,0,0) 50%, rgba(255,42,0,1) 100%);
+
+	&:hover {
+		@media only screen and (min-width: 500px) {
+			background: linear-gradient(180deg, rgba(255,42,0,0) 25%, rgba(255,42,0,1) 100%);
+		}
+	}
 }
 
 .maybe {
 	grid-area: 1 / 2 / 2 / 3;
 	background: linear-gradient(180deg, rgba(0,185,255,0) 50%, rgba(0,185,255,1) 100%);
+
+	&:hover {
+		@media only screen and (min-width: 500px) {
+			background: linear-gradient(180deg, rgba(0,185,255,0) 25%, rgba(0,185,255,1) 100%);
+		}
+	}
 }
 
 .okay {
 	grid-area: 1 / 3 / 2 / 4;
 	background: linear-gradient(180deg, rgba(22,255,0,0) 50%, rgba(22,255,0,1) 100%);
-}
-@media only screen and (min-width: 500px) {
-	.decline:hover {
-		background: linear-gradient(180deg, rgba(255,42,0,0) 25%, rgba(255,42,0,1) 100%);
-	}
 
-	.maybe:hover {
-		background: linear-gradient(180deg, rgba(0,185,255,0) 25%, rgba(0,185,255,1) 100%);
-	}
-
-	.okay:hover {
-		background: linear-gradient(180deg, rgba(22,255,0,0) 25%, rgba(22,255,0,1) 100%);
+	&:hover {
+		@media only screen and (min-width: 500px) {
+			background: linear-gradient(180deg, rgba(22,255,0,0) 25%, rgba(22,255,0,1) 100%);
+		}
 	}
 }
 
 .previous, .next {
 	cursor: pointer;
 	position: absolute;
-	top: 62px;
-	height: 76px;
-	width: 50px;
+	top: 70px;
+	height: 60px;
+	width: 60px;
 	outline: none;
 	background: white;
 	color: var(--bodyColor);
-	font-size: 50px;
+	font-size: 25px;
 	line-height: 35px;
 	border: 2px solid var(--bodyColor);
+	border-radius: 100px;
 	user-select: none;
-}
 
-.previous span, .next span {
-	position: relative;
-}
-
-.previous span {
-	right: -3px;
-}
-
-.next span {
-	left: -3px;
-}
-
-.previous span:hover {
-	animation: moveLeftArrow 1s ease-in-out infinite;
-}
-
-.next span:hover {
-	animation: moveRightArrow 1s ease-in-out infinite;
-}
-
-@media only screen and (max-width: 768px) {
-	.previous span:hover {
-		animation: moveLeftArrow 1s ease-in-out;
-		animation-iteration-count: 1;
+	@include landscape {
+		top: 45px;
 	}
-	
-	.next span:hover {
-		animation: moveRightArrow 1s ease-in-out;
-		animation-iteration-count: 1;
+
+	span {
+		width: 100%;
+		position: relative;
+	}
+
+	p {
+		font-size: 18px;
+		margin-top: -10px;
 	}
 }
 
 .previous {
 	border-right: 3px solid white;
 	left: -47px;
-}
+
+	@include small {
+		left: -59px;	
+	}
+
+	&.hideArrow {
+		cursor: default;
+		border: 2px solid var(--bodyColor);
+		border-right: 3px solid white;
+
+		span, p {
+			opacity: 0.4;
+		}
+	}
+
+	&:hover:not(:focus) {
+		span {
+			animation: moveLeftArrow 1s ease-in-out infinite;
+		}
+	}
+
+	span {
+		display: inline-flex;
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 8px 16px 8px 0;
+		border-color: transparent var(--bodyColor) transparent transparent;
+	}
+} 
 
 .next { 
 	border-left: 3px solid white;
 	right: -47px;
-}
 
-.previous.hideArrow {
-	cursor: default;
-	border: 2px solid var(--bodyColor);
-	border-right: 3px solid white;
-	color: rgba(204, 51, 51, 0.3);
-}
+	@include small {
+		right: -59px;	
+	}
 
-.next.hideArrow {
-	cursor: default;
-	border: 2px solid var(--bodyColor);
-	border-left: 3px solid white;
-	color: rgba(204, 51, 51, 0.3);
-}
+	&.hideArrow {
+		cursor: default;
+		border: 2px solid var(--bodyColor);
+		border-left: 3px solid white;
+		
+		span, p {
+			opacity: 0.4;
+		}
+	}
+
+	&:hover:not(:focus) {
+		span {
+			animation: moveRightArrow 1s ease-in-out infinite;
+		}
+	}
+
+	span {
+		display: inline-flex;
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 8px 0 8px 16px;
+		border-color: transparent transparent transparent var(--bodyColor);
+	}
+} 
 
 .map {
 	position: fixed;
@@ -513,117 +632,27 @@ input[type=number] {
 	height: 100%;
 	width: 100%;
 	visibility: hidden;
-}
 
-.map.show {
-	visibility: visible;
+	&.show {
+		visibility: visible;
+	}
 }
 
 .overlay {
 	transition: opacity 1s ease-in-out;
 	pointer-events: none;
 	opacity: 0;
-}
 
-.overlay.show {
-	pointer-events: auto;
-	opacity: 1;
+	&.show {
+		pointer-events: auto;
+		opacity: 1;
+	}
 }
 
 .leaflet-marker-icon {
 	filter: drop-shadow(1px 1px 2px black);
-}
 
-.leaflet-marker-icon:not(:nth-child(1)) {
-	animation: showIcon 0.25s ease-in-out forwards;
-}
-
-@media only screen and (max-width: 500px) {
-	.searchContainer {
-		width: 300px;
-		left: calc(50% - 150px);
-	}
-
-	.options {
-		width: 300px;
-		grid-template-columns: repeat(3, 100px);
-	}
-
-	.venueContainer {
-		width: 200px;
-		left: calc(50% - 100px);
-	}
-
-	.previous {
-		left: -59px;
-	}
-
-	.next {
-		right: -59px;
-	}
-
-	.choices {
-		width: 220px;
-		height: 60px;
-	}
-
-	.choices h2 {
-		font-size: 25px;
-	}
-
-	.choices p {
-		font-size: 11px;
-	}
-
-	.noOptions {
-		width: 220px;
-	}
-
-	.pickedOption {
-		width: 220px;
-	}
-
-	.venue {
-		max-width: 200px;
-	}
-
-	.venue .name {
-		font-size: 24px;
-		line-height: 24px;
-	}
-	
-	.venue .category {
-		display: block;
-		padding-left: 0px;
-	}
-}
-
-@media only screen and (max-height: 500px) {
-	.searchContainer {
-		height: 300px;
-		margin-top: 15px;
-	}
-
-	.witfBtn {
-		height: 170px;
-		background-size: 170px 170px;
-	}
-
-	.venueContainer {
-		height: 160px;
-	}
-
-	.previous, .next {
-		top: 45px;
-	}
-
-	.choices {
-		height: 65px;
-	}
-}
-
-@media only screen and (max-device-height: 500px) and (max-device-width: 500) {
-	.venue .category {
-		display: none;
+	&:not(:nth-child(1)) {
+		animation: showIcon 0.25s ease-in-out forwards;
 	}
 }
