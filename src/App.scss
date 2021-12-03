@@ -439,6 +439,8 @@ input[type=number] {
 	user-select: none;
 	border-left: 2px solid var(--bodyColor);
 	border-right: 2px solid var(--bodyColor);
+	border-bottom: 2px solid var(--bodyColor);
+	border-radius: 0 0 10px 10px;
 
 	@include small {
 		width: 220px;
